@@ -1,0 +1,11 @@
+<ul class="crumbs">
+    <li><a href="/">{config.homepage}</a> / </li>
+
+    {#crumbs}
+    <li>
+        {^last} <a href="{url}">{title}</a> / {:else} {title} {/last}
+    </li>
+    {/crumbs}
+</ul>
+
+<br class="clear"/>

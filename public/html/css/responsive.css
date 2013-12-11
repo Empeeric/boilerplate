@@ -1,0 +1,784 @@
+/*
+* Based on Skeleton by Dave Gamache (www.getskeleton.com)
+* Modified by Vasterad
+*/
+
+
+/* Table of Contents
+==================================================
+    #Base 960 Grid
+    #Tablet (Portrait)
+    #Mobile (Portrait)
+    #Mobile (Landscape)
+    #Clearing */
+
+
+/* #Base 960 Grid
+================================================== */
+
+.container {
+	position: relative;
+	width: 960px;
+	margin: 0 auto;
+	padding: 0;
+}
+.container.floated {
+	width: 1020px;
+}
+.container .column,  .container .columns {
+	float: left;
+	display: inline;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.row {
+	margin-bottom: 20px;
+}
+/* Nested Column Classes */
+#content {
+	overflow: hidden;
+}
+.column.alpha, .columns.alpha {
+	margin-left: 0;
+}
+.column.omega, .columns.omega {
+	margin-right: 0;
+}
+.container .floated {
+	float: left;
+	display: inline;
+	margin: 0;
+	padding: 0 40px;
+}
+.container .floated.form-container {
+	float: left;
+	display: inline;
+	margin: 0;
+	padding: 0 20px;
+}
+.blank.floated {
+	float: left;
+	display: inline;
+	margin: 0;
+	width: 960px;
+	padding: 0 30px;
+	border-top: 1px solid #e8e8e8;
+	border-bottom: 1px solid #e8e8e8;
+	background: #fcfcfc;
+	-webkit-box-shadow: inset 0px 2px 0px 0px #f7f7f7, inset 0px -2px 0px 0px #f7f7f7;
+	box-shadow: inset 0px 2px 0px 0px #f7f7f7, inset 0px -2px 0px 0px #f7f7f7;
+}
+.container label.floated {
+	padding: 0 10px 17px 0;
+}
+/* Equal Sidebar */
+.floated.sidebar {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+}
+.floated.sidebar.right {
+float-right;
+	right: 0;
+	left: auto;
+}
+.floated.sidebar.left {
+	float: left;
+	left: 0;
+	right: auto;
+}
+.floated.right {
+	float: right;
+}
+/* Base Grid */
+.container .one.column,  .container .one.columns,  .container .one.floated {
+	width: 40px;
+}
+.container .two.columns,  .container .two.floated {
+	width: 100px;
+}
+.container .three.columns,  .container .three.floated {
+	width: 160px;
+}
+.container .four.columns,  .container .four.floated {
+	width: 220px;
+}
+.container .four.floated.form-container {
+	width: 260px;
+}
+.container .five.columns,  .container .five.floated {
+	width: 280px;
+}
+.container .six.columns,  .container .six.floated {
+	width: 340px;
+}
+.container .seven.columns,  .container .seven.floated {
+	width: 400px;
+}
+.container .eight.columns,  .container .eight.floated {
+	width: 460px;
+}
+.container .nine.columns,  .container .nine.floated {
+	width: 520px;
+}
+.container .ten.columns,  .container .ten.floated {
+	width: 580px;
+}
+.container .eleven.columns,  .container .eleven.floated {
+	width: 719px;
+}
+.container .eleven.columns.contact-page,  .container .eleven.floated.contact-page {
+	    width: 639px;
+}
+.container .twelve.columns,  .container .twelve.floated {
+	width: 700px;
+}
+.container .thirteen.columns,  .container .thirteen.floated {
+	width: 760px;
+}
+.container .fourteen.columns,  .container .fourteen.floated {
+	width: 820px;
+}
+.container .fifteen.columns,  .container .fifteen.floated {
+	width: 880px;
+}
+.container .sixteen.columns,  .container .sixteen.floated {
+	width: 940px;
+}
+.container .one-third.column {
+	width: 300px;
+}
+.container .two-thirds.column {
+	width: 620px;
+}
+.container .three-forth.column {
+	width: 720px;
+}
+/* Offsets */
+.container .offset-by-one {
+	padding-left: 60px;
+}
+.container .offset-by-two {
+	padding-left: 120px;
+}
+.container .offset-by-three {
+	padding-left: 180px;
+}
+.container .offset-by-four {
+	padding-left: 240px;
+}
+.container .offset-by-five {
+	padding-left: 300px;
+}
+.container .offset-by-six {
+	padding-left: 360px;
+}
+.container .offset-by-seven {
+	padding-left: 420px;
+}
+.container .offset-by-eight {
+	padding-left: 480px;
+}
+.container .offset-by-nine {
+	padding-left: 540px;
+}
+.container .offset-by-ten {
+	padding-left: 600px;
+}
+.container .offset-by-eleven {
+	padding-left: 660px;
+}
+.container .offset-by-twelve {
+	padding-left: 720px;
+}
+.container .offset-by-thirteen {
+	padding-left: 780px;
+}
+.container .offset-by-fourteen {
+	padding-left: 840px;
+}
+.container .offset-by-fifteen {
+	padding-left: 900px;
+}
+.container .no-pad {
+	padding: 0 !important;
+}
+.container .sideBarContent {
+	margin-left: 301px;
+}
+/* Pricing Tables */
+.five-tables .pricing-table {
+	width: 187px;
+}
+.four-tables .pricing-table {
+	width: 234px;
+}
+.three-tables .pricing-table {
+	width: 312px;
+}
+.two-tables .pricing-table {
+	width: 469px;
+}
+.page-content-image {
+	padding-bottom: 175px;
+}
+
+.button.sidebutton {
+	width: 87%;
+	 text-align: center;
+}
+.list-pic .list-image-container {
+	height: 200px;
+	margin-right: 50px;
+	width: 31%;
+}
+.list-pic li {
+	border-right: 1px solid #E0E0E0;
+	box-shadow: 2px 0px 0px rgba(0, 0, 0, 0.03);
+	-webkit-box-shadow: 2px 0px 0px rgba(0, 0, 0, 0.03);
+	-moz-box-shadow: 2px 0px 0px rgba(0, 0, 0, 0.03);
+	box-shadow: 2px 0px 0px rgba(0, 0, 0, 0.03);
+	padding: 30px;
+	min-height: 200px;
+}
+.container .floated select.small-select {
+    margin-top: -5px;
+    padding: 6px 9px;
+    width: 18%;
+}
+.container .floated label.select.small-select:before { 
+	height: 22px; 
+	right: -106px;
+	top: 0;
+	width: 20px;
+}
+.container  .floated .select.small-select:after {  
+	right: -105px;
+	top: 4px;
+}
+#contact select.small-select {
+    margin-top: -5px;
+    padding: 6px 9px;
+    width: 70%;
+}
+#contact .select.small-select.small-select:before { 
+ 
+	right:14px; 
+}
+#contact label.select.small-select:after {  
+	right: 14px;
+    top: 6px;
+}
+.small-break:before,  .small-break:after  {
+	content: '\0020';
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+#contact label.floated.small-select {
+	width: 62px;
+} 
+ 
+/* #Tablet (Portrait)
+================================================== */
+
+    /* Note: Design for a width of 768px */
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+.container {
+	width: 678px;
+}
+.container.floated {
+	width: 714px;
+}
+.container .column,  .container .columns {
+	margin-left: 7px;
+	margin-right: 7px;
+}
+.column.alpha, .columns.alpha {
+	margin-left: 0;
+	margin-right: 7px;
+}
+.column.omega, .columns.omega {
+	margin-right: 0;
+	margin-left: 7px;
+}
+.alpha.omega {
+	margin-left: 0;
+	margin-right: 0;
+}
+.container label.floated.long {
+	width: 120px;
+}
+.container .floated {
+	margin: 0;
+	padding: 0 28px;
+}
+.blank.floated {
+	width: 678px;
+	padding: 0 18px;
+}
+.container .one.column,  .container .one.columns,  .container .one.floated {
+	width: 28px;
+}
+.container .two.columns,  .container .two.floated {
+	width: 70px;
+}
+.container .three.columns,  .container .three.floated {
+	width: 112px;
+}
+.container .four.columns,  .container .four.floated {
+	width: 154px;
+}
+.container .four.floated.form-container {
+	width: 142px;
+}
+#contact select {
+	width: 100%  ;
+} 
+#contact select.small-select {
+	width: 100%  ;
+}
+#contact label.select.small-select:before {
+	left: 82%!important;
+}
+#contact label.select.small-select:after {
+	right: 8px !important
+}
+#contact .floated.small-select {
+	float: none;
+}
+#contact label.floated.small-select {
+	display: block;
+	margin-bottom: 5px;
+	padding: 0 !important;
+}
+.tabs-nav li a {
+	padding: 0 14px !important;
+}
+.container .five.columns,  .container .five.floated {
+	width: 196px;
+}
+.container .six.columns,  .container .six.floated {
+	width: 238px;
+}
+.container .seven.columns,  .container .seven.floated {
+	width: 280px;
+}
+.container .eight.columns,  .container .eight.floated {
+	width: 322px;
+}
+.container .nine.columns,  .container .nine.floated {
+	width: 364px;
+}
+.container .ten.columns,  .container .ten.floated {
+	width: 406px;
+}
+.container .eleven.columns,  .container .eleven.floated {
+	width: 531px;
+}
+.container .eleven.columns.contact-page,  .container .eleven.floated.contact-page {
+	    width: 447px;
+}
+.container .sideBarContent {
+	margin-left: 183px;
+}
+.container .twelve.columns,  .container .twelve.floated {
+	width: 490px;
+}
+.container .thirteen.columns,  .container .thirteen.floated {
+	width: 532px;
+}
+.container .fourteen.columns,  .container .fourteen.floated {
+	width: 574px;
+}
+.container .fifteen.columns,  .container .fifteen.floated {
+	width: 616px;
+}
+.container .sixteen.columns,  .container .sixteen.floated {
+	width: 658px;
+}
+.container .one-third.column {
+	width: 212px;
+}
+.container .two-thirds.column {
+	width: 438px;
+}
+/* Offsets */
+.container .offset-by-one {
+	padding-left: 48px;
+}
+.container .offset-by-two {
+	padding-left: 96px;
+}
+.container .offset-by-three {
+	padding-left: 144px;
+}
+.container .offset-by-four {
+	padding-left: 192px;
+}
+.container .offset-by-five {
+	padding-left: 240px;
+}
+.container .offset-by-six {
+	padding-left: 288px;
+}
+.container .offset-by-seven {
+	padding-left: 336px;
+}
+.container .offset-by-eight {
+	padding-left: 384px;
+}
+.container .offset-by-nine {
+	padding-left: 432px;
+}
+.container .offset-by-ten {
+	padding-left: 480px;
+}
+.container .offset-by-eleven {
+	padding-left: 528px;
+}
+.container .offset-by-twelve {
+	padding-left: 576px;
+}
+.container .offset-by-thirteen {
+	padding-left: 624px;
+}
+.container .offset-by-fourteen {
+	padding-left: 672px;
+}
+.container .offset-by-fifteen {
+	padding-left: 720px;
+}
+/* Pricing Tables */
+.five-tables .pricing-table {
+	width: 130px;
+}
+.four-tables .pricing-table {
+	width: 163px;
+}
+.three-tables .pricing-table {
+	width: 218px;
+}
+.two-tables .pricing-table {
+	width: 328px;
+}
+.page-content-image {
+	padding-bottom: 127px;
+}
+#contact label.floated.small-select {
+    width: 100%;
+}
+.button.sidebutton {
+	width: 79%;
+}
+.list-pic .list-image-container {
+	height: 200px;
+	margin-right: 32px;
+}
+.list-pic li {
+	padding: 30px;
+	min-height: 200px;
+}
+.container .floated select.small-select {   
+	width: 20%;
+	margin-left:62px;
+}
+#contact select.small-select {   
+	 
+	margin-left:0px;
+}
+ 
+.container .floated label.select.small-select:before { 
+	right: -141px; 
+}
+.container .floated label.select.small-select:after {  
+	right: -143px; 
+}
+ 
+.small-break:after  {
+	clear: both;
+}
+}
+
+/*  #Mobile (Portrait)
+================================================== */
+
+    /* Note: Design for a width of 320px */
+
+@media only screen and (max-width: 767px) {
+.container,  .container.floated {
+	width: 260px;
+}
+.container .columns,  .container .column {
+	margin: 0;
+}
+.container .floated {
+	float: left;
+	padding: 0 30px;
+}
+.floated.sidebar {
+	position: relative;
+}
+.container .one.column,  .container .one.columns,  .container .one.floated,  .container .two.columns,  .container .two.floated,  .container .three.columns,  .container .three.floated,  .container .four.columns,  .container .four.floated,  .container .five.columns,  .container .five.floated,  .container .six.columns,  .container .six.floated,  .container .seven.columns,  .container .seven.floated,  .container .eight.columns,  .container .eight.floated,  .container .nine.columns,  .container .nine.floated,  .container .ten.columns,  .container .ten.floated,  .container .eleven.columns,  .container .eleven.floated,  .container .twelve.columns,  .container .twelve.floated,  .container .thirteen.columns,  .container .thirteen.floated,  .container .fourteen.columns,  .container .fourteen.floated,  .container .fifteen.columns,  .container .fifteen.floated,  .container .sixteen.columns,  .container .sixteen.floated,  .container .one-third.column,  .container .two-thirds.column {
+	width: 260px;
+}
+.container .four.floated.form-container {
+	width: 280px;
+}
+.container .eleven.floated {
+	width: 320px;
+}
+.container .eleven.columns.contact-page,  .container .eleven.floated.contact-page {
+	    width: 264px;
+}
+.page-content-image {
+	padding-bottom: 83px;
+}
+.sideBarContent .page-content {
+	padding: 0;
+}
+.container .sideBarContent {
+	margin-left: 0;
+}
+#contact .floated.small-select {
+	float: none;
+}
+#contact label.floated.small-select {
+	display: block;
+	margin-bottom: 5px;
+	padding: 0 !important;
+}
+.page-content-image {
+	padding-bottom: 110px;
+}
+#contact .container label.floated.small-select  {
+	float: none;
+}
+/* Offsets */
+.container .offset-by-one,  .container .offset-by-two,  .container .offset-by-three,  .container .offset-by-four,  .container .offset-by-five,  .container .offset-by-six,  .container .offset-by-seven,  .container .offset-by-eight,  .container .offset-by-nine,  .container .offset-by-ten,  .container .offset-by-eleven,  .container .offset-by-twelve,  .container .offset-by-thirteen,  .container .offset-by-fourteen,  .container .offset-by-fifteen {
+	padding-left: 0;
+}
+/* Pricing Tables */
+.five-tables .pricing-table,  .four-tables .pricing-table,  .three-tables .pricing-table,  .two-tables .pricing-table {
+	width: 260px;
+}
+#contact label.select:before,  #contact label.select.small-select:before {
+	left: 87% !important;
+}
+#contact select {
+	width: 97% !important;
+	margin-left: 0;
+}
+#contact label.select:after {
+	right: 20px !important;
+}
+#contact label.floated.small-select {
+	width: auto;
+}
+.button.sidebutton {
+	width: 91%;
+}
+.list-pic .list-image-container {
+	height: 54px;
+	margin-right: 15px;
+	width: 16%;
+}
+.list-pic li {
+	box-shadow: none;
+	border-right: none;
+	min-height: 111px;
+	padding: 25px;
+	width: 38%;
+}
+.container .floated select.small-select {   
+	width: 100%;
+}
+ 
+.container .floated label.select.small-select:before { 
+	right: -148px;
+    top: 39px;
+}
+.container .floated label.select.small-select:after {
+    right: -146px;
+    top: 43px;
+}
+br.small-break{
+	clear: both;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;	
+}
+ 
+.small-break:after  {
+	clear: both;
+	height: 10px;
+}
+
+.product-amount.floated {
+    clear: both;
+    padding: 0 !important;
+    width: 100%;
+}
+
+.product-amount.floated input {
+  
+    width: 189px;
+}
+.tabs-nav li { 
+    line-height: 30px !important; 
+    width: 100%;
+}
+}
+
+/* #Mobile (Landscape)
+================================================== */
+
+    /* Note: Design for a width of 480px */
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+.container {
+	width: 360px;
+}
+.container .columns,  .container .column {
+	margin: 0;
+}
+.container .floated {
+	float: left;
+	padding: 0 30px;
+}
+.floated.sidebar {
+	position: relative;
+}
+.container .one.column,  .container .one.columns,  .container .one.floated,  .container .two.columns,  .container .two.floated,  .container .three.columns,  .container .three.floated,  .container .four.columns,  .container .four.floated,  .container .five.columns,  .container .five.floated,  .container .six.columns,  .container .six.floated,  .container .seven.columns,  .container .seven.floated,  .container .eight.columns,  .container .eight.floated,  .container .nine.columns,  .container .nine.floated,  .container .ten.columns,  .container .ten.floated,  .container .eleven.columns,  .container .eleven.floated,  .container .twelve.columns,  .container .twelve.floated,  .container .thirteen.columns,  .container .thirteen.floated,  .container .fourteen.columns,  .container .fourteen.floated,  .container .fifteen.columns,  .container .fifteen.floated,  .container .sixteen.columns,  .container .sixteen.floated,  .container .one-third.column,  .container .two-thirds.column {
+	width: 360px;
+}
+.container .four.floated.form-container {
+	width: 380px;
+}
+.container .eleven.floated {
+	width: 420px;
+}
+.container .eleven.columns.contact-page,  .container .eleven.floated.contact-page {
+	    width: 362px;
+}
+.page-content-image {
+	padding-bottom: 127px;
+}
+.sideBarContent .page-content {
+	padding: 0;
+}
+.container .sideBarContent {
+	margin-left: 0;
+}
+.page-content-image {
+	padding-bottom: 110px;
+}
+/* Pricing Tables */
+.five-tables .pricing-table,  .four-tables .pricing-table,  .three-tables .pricing-table,  .two-tables .pricing-table {
+	width: 360px;
+}
+#contact label.select:before,  #contact label.select.small-select:before {
+	left: 88% !important;
+}
+#contact select {
+	width: 95% !important
+}
+#contact label.select:after {
+	right: 28px !important;
+}
+#contact .floated.small-select {
+	float: none;
+}
+#contact label.floated.small-select {
+	display: block;
+	margin-bottom: 5px;
+	padding: 0 !important;
+}
+#contact label.floated.small-select{
+	width: auto;
+}
+.button.sidebutton {
+	width: 92%;
+}
+.list-pic .list-image-container {
+	height: 81px;
+	margin-right: 15px;
+	width: 16%;
+}
+.list-pic li {
+	min-height: 111px;
+	padding: 25px;
+	width: 53%;
+}
+
+.container .floated select.small-select {
+    margin-left: 63px; 
+    width: 27%;
+}
+.container .floated label.select.small-select:before { 
+	 
+	right: -145px; 
+	 top: 0;
+}
+.container .floated label.select.small-select:after {  
+	right: -143px; 
+	 top: 4px;
+}
+ 
+ 
+.small-break:after  {
+	clear: both;
+}
+.product-amount.floated {
+    clear: none;
+    padding: inherit;
+    width: inherit;
+	 margin-left: 30px;
+}
+.product-amount.floated input {
+  
+    width: 50px;
+}
+}
+/* #Clearing
+================================================== */
+
+    /* Self Clearing Goodness */
+.container:after {
+	content: "\0020";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+/* Use clearfix class on parent to clear nested columns,
+    or wrap each row of columns in a <div class="row"> */
+
+.clearfix:before,  .clearfix:after,  .row:before,  .row:after {
+	content: '\0020';
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+.row:after,  .clearfix:after {
+	clear: both;
+}
+.row,  .clearfix {
+	zoom: 1;
+}
+/* You can also use a <br class="clear" /> to clear columns */
+.clear {
+	clear: both;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}

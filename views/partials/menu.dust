@@ -1,0 +1,9 @@
+{@menu}
+    <ul id="lstMenu">
+        {#items}
+        <li class="{?dock}selected{/dock}">
+            <a href="{url}" title="{title}">{title}</a>
+        </li>
+        {/items}
+    </ul>
+{/menu}
