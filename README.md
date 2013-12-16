@@ -1,4 +1,0 @@
-MPY
-===
-
-My Preference Yeild
