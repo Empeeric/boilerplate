@@ -1,8 +1,10 @@
-var mongoose = require('mongoose'),
+var _ = require('lodash'),
+    mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     Types = Schema.Types,
     async = require('async'),
-    _ = require('lodash');
+    views = require('../../frontend/views/');
+
 
 var schema = new Schema({
     parent: { type: Types.ObjectId, ref: 'navigation' },
@@ -12,7 +14,7 @@ var schema = new Schema({
     }],
     title: { type: String, required: true, trim: true },
     url: { type: String, trim: true, lowercase: true, unique: true },
-    template: { type: String, enum: require('../views/'), default: 'homepage' },
+    template: { type: String, enum: views, default: 'homepage' },
     order: { type: Number, editable: false },
     menu: { type: Boolean, 'default': true },
     show: { type: Boolean, 'default': true }

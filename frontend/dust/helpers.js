@@ -1,5 +1,5 @@
 var dust = require('dustjs-helpers'),
-    models = require('../models'),
+    models = require('../../server/models'),
     _ = require('lodash');
 
 dust.helpers.cloudinary = function (chunk, context, bodies, params) {
