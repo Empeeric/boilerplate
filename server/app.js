@@ -6,7 +6,7 @@ var nodestrum = require('nodestrum'),
     formage = require('formage'),
     models = require('./models'),
     http = require('http'),
-    dustjs = require('dustjs-linkedin'),
+    dust = require('dustjs-linkedin'),
     consolidate = require('consolidate'),
     resors = require('resors');
 
@@ -15,7 +15,7 @@ nodestrum.register_process_catcher();
 
 var app = module.exports.app = express();
 
-app.set('site', 'My Preference Yeild');
+app.set('site', 'Empeeric Boilerplate');
 app.engine('dust', consolidate.dust);
 app.set('view engine', 'dust');
 app.set('views', path.join(__dirname, '..', 'frontend', 'views'));
@@ -44,6 +44,7 @@ formage.init(app, express, models, {
 
 app.use(app.router);
 
+// TODO: this is a public repository, right?
 app.use('/1EjvWMNot8v14KV8qKYtzYwYyS2SShpiDh/api', resors.middleware(models));
 
 app.use(function (req, res, next) {
@@ -57,14 +58,14 @@ app.use(express.errorHandler());
 
 // development only
 if (nodestrum.isDebug('templates')) {
-    dustjs.optimizers.format = function(ctx, node) { return node };
+    dust.optimizers.format = function(ctx, node) { return node };
 }
 
 mongoose.connect(registry.mongo_cfg);
 
-//require('../frontend/compile_templates');
-require('../frontend/dust/helpers');
-require('../frontend/dust/filters');
+//require('../front/compile_templates');
+require('../front/dust/helpers');
+require('../front/dust/filters');
 require('./mongoose/helpers');
 require('./routes');
 
