@@ -10,7 +10,6 @@ var nodestrum = require('nodestrum'),
     consolidate = require('consolidate'),
     resors = require('resors');
 
-
 nodestrum.register_process_catcher();
 
 var app = module.exports.app = express();
