@@ -26,9 +26,10 @@ dust.helpers.picture = function (chunk, ctx, bodies, params) {
         cloudinary.url(ctx.public_id, params)
     );
 };
+
 dust.helpers.cloudinary = function() {
     console.error('dust helpers: @cloudinary is deprecated, use @picture instead');
-    return dust.helpers.cloudinary.apply(this, arguments);
+    return dust.helpers.picture.apply(this, arguments);
 };
 
 dust.helpers.banners = function (chunk, context, bodies, params) {
