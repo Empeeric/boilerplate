@@ -23,9 +23,14 @@ dust.filters.brs = function(value){
     return value.replace(/\r\n/g, "<br>");
 };
 
+// Convert to Lower case
+dust.filters.lc = function(value){
+    return value.toLowerCase();
+};
+
 // Strips all HTML tags from the string.
 dust.filters.st = function(value) {
-    return value.stripTags();
+    return value.stripTags().replace(/\&nbsp\;/igm, ' ').compact();
 };
 
 // Create new p section from each paragraph in a string
