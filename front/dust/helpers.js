@@ -32,92 +32,81 @@ dust.helpers.cloudinary = function() {
     return dust.helpers.picture.apply(this, arguments);
 };
 
-dust.helpers.banners = function (chunk, context, bodies, params) {
-    return chunk.map(function (chunk) {
-        models
-            .banners
+// Content Helper
+// based on a cms schema with a Navigation ref, show and order filed
+// {@content model="model_name" [
+//     limit="number of rows to limit", --default is 0 -all records
+//     order_by="field",                --default is order
+//     sort="asc|desc",                 --default is asc
+//     paginate="true|false",           --default is false
+//     navigation="true|false"          --default is true
+// ]}
+//     {#items}{.}{/items}
+// {/content}
+dust.helpers.content = function(chunk, context, bodies, params){
+    params || (params = {});
+    var model =  models[params.model],
+        page = context.get('page'),
+        o = {};
+
+    params.order_by || (params.order_by = 'order');
+    o[params.order_by] = (params.sort == 'desc' ? -1 : 1);
+
+    return chunk.map(function(chunk) {
+        var query = model.find();
+
+        if(params.navigation !== "false") query.where('navigation', page._id);
+
+        query
+            .where('show', 1)
+            .sort(o);
+
+        if(params.limit) query.limit(params.limit.toNumber());
+
+        if(params.paginate){
+            model.paginate(query, page.query.page, params.records, function(err, items, count, pages){
+                params.records || (params.records = count);
+                context = context.push({pages: pages || 0, count: count, items: items, records: params.records});
+                chunk.render(bodies.block, context).end()
+            });
+        }else{
+            query
+                .lean()
+                .exec(function(err, items){
+                    context = context.push({items: items});
+                    chunk.render(bodies.block, context).end()
+                })
+        }
+    })
+};
+
+// Scalar Helper
+// returns one record from a model without conditions
+dust.helpers.scalar = function(chunk, context, bodies, params) {
+    params || (params = {});
+    var model =  models[params.model];
+
+    return chunk.map(function(chunk) {
+        model
             .findOne()
             .lean()
-            .exec(function (err, banners) {
+            .exec(function(err, banners){
                 context = context.push(banners);
                 chunk.render(bodies.block, context).end()
             })
     })
 };
 
-
-//generic helper for content with order and show fields
-// filtered by navigation id (page)
-['content'].forEach(function (model) {
-    dust.helpers[model] = function (chunk, context, bodies, params) {
-        return chunk.map(function (chunk) {
-
-            var query = models[model]
-                .where('navigation', context.get('page')._id)
-                .where('show', 1)
-                .sort({order: 1});
-
-            if (params && params.limit) query.limit(params.limit);
-
-            query
-                .lean()
-                .exec(function (err, items) {
-                    context = context.push({items: items});
-                    chunk.render(bodies.block, context).end()
-                })
-        })
-    };
-});
-
-// generic helper for content with pagination and show fields
-// filtered by navigation id (page)
-['products'].forEach(function (model) {
-    dust.helpers[model] = function (chunk, context, bodies, params) {
-        params || (params = {});
-
-        var config = context.get('config'),
-            page = context.get('page'),
-            items = [];
-
-        return chunk.map(function (chunk) {
-            var query = models[model]
-                .where('show', true)
-                .where('navigation', page._id)
-                .sort({order: 1})
-                .lean();
-
-            models[model].paginate(query, page.query.page, params.records, function (err, content, count, pages) {
-                params.records || (params.records = count);
-                content.forEach(function (item, i) {
-                    if (item.text) {
-                        dust.loadSource(dust.compile(item.text, "content_template"));
-                        dust.render('content_template', config, function (err, text) {
-                            item.text = text;
-                            items.push(item);
-                        });
-                    } else {
-                        items.push(item);
-                    }
-                });
-
-                context = context.push({pages: pages || 0, count: count, items: items, records: params.records});
-                chunk.render(bodies.block, context);
-
-                chunk.end();
-
-            });
-        })
-    };
-});
-
-dust.helpers.menu = function (chunk, context, bodies) {
+// Menu Helper
+// Fetch navigation model as the cms's main menu
+dust.helpers.menu = function(chunk, context, bodies) {
     var page = context.get('page'),
         crumbs = context.get('crumbs');
 
-    return chunk.map(function (chunk) {
-        models.navigation.findRecursive(function (err, menu) {
-            menu.forEach(function (item, i) {
-                item.dock = (crumbs && crumbs[0] && crumbs[0]._id.toString() === item._id.toString());
+    return chunk.map(function(chunk) {
+        models.navigation.findRecursive(function(err, menu) {
+            menu.forEach(function(item, i){
+                item.dock = (crumbs&&crumbs[0]&&crumbs[0]._id.toString() === item._id.toString());
                 item.last = (i + 1 == menu.length);
             });
 
@@ -160,43 +149,63 @@ dust.helpers.stripTags = function (chunk, context, bodies, params) {
     }).render(bodies.block, context).untap();
 };
 
-// TODO: it's ugly now
-dust.helpers.paging = function (chunk, context, bodies, params) {
+// Paging helper to use with Content helper
+// example:
+//  {@paging [display="number of pages to display"]}
+//  <ul>
+//      {?previous}
+//      <li> <a href="?{query}={previous}" title=""> Prev </a> </li>
+//      {/previous}
+//      {#range}
+//      {@eq key="{current}" value="{.}" type="number"}
+//      <li> {.} </li>
+//      {:else}
+//      <li> <a href="?{query}={.}" title=""> {.} </a> </li>
+//      {/eq}
+//      {/range}
+//      {?next}
+//      <li> <a href="?{query}={next}" title=""> Next </a> </li>
+//      {/next}
+//  </ul>
+//  {/paging}
+dust.helpers.paging = function(chunk, context, bodies, params){
+    // TODO: it's ugly now
+
     params || (params = {});
     var page = context.get('page');
 
-    var count = params.count;
+    var count = context.get('count');
     var display = params.display || 5;
-    var records = params.records;
-    var current = page.query.page && page.query.page.toNumber().abs() || 1;
+    var records = context.get('records');
+    var current = page.query.page&&page.query.page.toNumber().abs() || 1;
     var start, end, pages;
     var old_display = (display % 2 == 0) ? 1 : 0, i, half;
     var result = {
-        prelink: params.link || '?page=',
-        current: current,
-        previous: null,
-        next: null,
-        first: null,
-        last: null,
-        range: [],
-        from: null,
-        to: null,
-        total: count,
-        pages: null
+        query : params.query || 'page',
+        current : current,
+        previous : null,
+        next : null,
+        first : null,
+        last : null,
+        range : [],
+        from : null,
+        to : null,
+        total : count,
+        pages : null
     };
     /* zero division; negative */
-    if (records <= 0) {
+    if(records <= 0) {
         return chunk.render(bodies.block, context.push(result));
     }
     pages = (count / records).ceil();
     result.pages = pages;
-    if (pages < 2) {
+    if(pages < 2) {
         result.from = 1;
         result.to = count;
         return chunk.render(bodies.block, context.push(result));
     }
 
-    if (current > pages) {
+    if(current > pages) {
         current = pages;
         result.current = current;
     }
@@ -204,44 +213,44 @@ dust.helpers.paging = function (chunk, context, bodies, params) {
     start = current - half;
     end = current + half - old_display;
 
-    if (start < 1) {
+    if(start < 1) {
         start = 1;
         end = start + display;
-        if (end > pages) {
+        if(end > pages) {
             end = pages;
         }
     }
 
-    if (end > pages) {
+    if(end > pages) {
         end = pages;
         start = end - display + 1;
-        if (start < 1) {
+        if(start < 1) {
             start = 1;
         }
     }
 
-    for (i = start; i <= end; i++) {
+    for( i = start; i <= end; i++) {
         result.range.push(i);
     }
 
-    if (current > 1) {
+    if(current > 1) {
         result.first = 1;
         result.previous = current - 1;
     }
 
-    if (current < pages) {
+    if(current < pages) {
         result.last = pages;
         result.next = current + 1;
     }
 
     result.from = (current - 1) * records + 1;
-    if (current == pages) {
+    if(current == pages) {
         result.to = count;
     } else {
         result.to = result.from + records - 1;
     }
 
+    result.link = page.url + "?" + result.query + "=";
+
     return chunk.render(bodies.block, context.push(result));
 };
-
-

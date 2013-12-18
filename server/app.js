@@ -10,6 +10,10 @@ var nodestrum = require('nodestrum'),
     consolidate = require('consolidate'),
     resors = require('resors');
 
+// We need it, we rely on it on entire cms
+// also in in non intrusive to the application whatsoever
+require('sugar');
+
 nodestrum.register_process_catcher();
 
 var app = module.exports.app = express();
