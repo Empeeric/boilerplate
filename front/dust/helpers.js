@@ -32,17 +32,28 @@ dust.helpers.cloudinary = function() {
     return dust.helpers.picture.apply(this, arguments);
 };
 
-// Content Helper
 // based on a cms schema with a Navigation ref, show and order filed
-// {@content model="model_name" [
-//     limit="number of rows to limit", --default is 0 -all records
-//     order_by="field",                --default is order
-//     sort="asc|desc",                 --default is asc
-//     paginate="true|false",           --default is false
-//     navigation="true|false"          --default is true
-// ]}
-//     {#items}{.}{/items}
-// {/content}
+/*
+    List Helper
+    return a list of documents
+
+{@content model="model_name" [
+     limit="number of rows to limit", --default is 0 -all records
+     order_by="field",                --default is order
+     sort="asc|desc",                 --default is asc
+     paginate="num_records|false",    --default is false
+     navigation="true|false"          --default is true
+]}
+     {#items}{.}{/items}
+{/content}
+
+TODO:
+    findAll if no navigation field in schema
+    if no show in schema, ignore it
+    if no default sort, and no order_by in options, ignore
+    params.records = pagniate if not false
+    test
+*/
 dust.helpers.content = function(chunk, context, bodies, params){
     params || (params = {});
     var model =  models[params.model],
@@ -55,21 +66,24 @@ dust.helpers.content = function(chunk, context, bodies, params){
     return chunk.map(function(chunk) {
         var query = model.find();
 
-        if(params.navigation !== "false") query.where('navigation', page._id);
+        if (params.navigation !== "false")
+            query.where('navigation', page._id);
 
         query
             .where('show', 1)
             .sort(o);
 
-        if(params.limit) query.limit(params.limit.toNumber());
+        if (params.limit)
+            query.limit(Number(params.limit));
 
-        if(params.paginate){
+        if (params.paginate) {
             model.paginate(query, page.query.page, params.records, function(err, items, count, pages){
                 params.records || (params.records = count);
                 context = context.push({pages: pages || 0, count: count, items: items, records: params.records});
                 chunk.render(bodies.block, context).end()
             });
-        }else{
+        }
+        else {
             query
                 .lean()
                 .exec(function(err, items){
@@ -80,9 +94,10 @@ dust.helpers.content = function(chunk, context, bodies, params){
     })
 };
 
-// Scalar Helper
-// returns one record from a model without conditions
-dust.helpers.scalar = function(chunk, context, bodies, params) {
+// Doc helper
+// returns one record using model.findOne
+// {@doc model="model"/}
+dust.helpers.doc = function(chunk, context, bodies, params) {
     params || (params = {});
     var model =  models[params.model];
 
@@ -90,9 +105,9 @@ dust.helpers.scalar = function(chunk, context, bodies, params) {
         model
             .findOne()
             .lean()
-            .exec(function(err, banners){
-                context = context.push(banners);
-                chunk.render(bodies.block, context).end()
+            .exec(function(err, doc){
+                if (err) return chunk.write(err).end();
+                chunk.render(bodies.block, context.push(doc)).end()
             })
     })
 };
@@ -168,6 +183,23 @@ dust.helpers.stripTags = function (chunk, context, bodies, params) {
 //      {/next}
 //  </ul>
 //  {/paging}
+/* TODO:
+{@paginate}
+    {#prev}<a href="{link}">prev</a>{/prev}
+    {#next}<a href="{link}">next</a>{/next}
+    <ul>
+    {#range}
+        {#current}
+            <span>{num}</span>
+        {:else}
+            <a href="{link}">{num}</a>
+        {/current}
+
+        <a href="{link}" {#current}class="active"{/current}>{num}</a>
+    {/range}
+    </ul>
+{/paginate}
+ */
 dust.helpers.paging = function(chunk, context, bodies, params){
     // TODO: it's ugly now
 

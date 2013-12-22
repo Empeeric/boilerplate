@@ -14,13 +14,13 @@ dust.filters.seo = function(value){
 // Create new br tag for each line in a string
 // Join empty multiple lines to one br tag
 dust.filters.br = function(value){
-    return value.lines().remove('').join('<br>');
+    return value.lines().remove('').join('<br />');
 };
 
 // Create new br tag for each line in a string
 // Join empty multiple lines to one br tag
 dust.filters.brs = function(value){
-    return value.replace(/\r\n/g, "<br>");
+    return value.replace(/\r\n/g, "<br />");
 };
 
 // Convert to Lower case
@@ -72,6 +72,7 @@ dust.filters.sy = function(value){
     return value.spacify();
 };
 
+// Trim
 // Removes leading and/or trailing whitespace from the string.
 // Whitespace is defined as line breaks, tabs,
 // and any character in the "Space, Separator" Unicode category, conforming to the the ES5 spec.
