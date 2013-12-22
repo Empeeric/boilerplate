@@ -10,11 +10,7 @@ var nodestrum = require('nodestrum'),
     consolidate = require('consolidate'),
     resors = require('resors');
 
-// We need it, we rely on it on entire cms
-// also it sidesteps the biggest pitfalls of extending natives,
-// and approaches the rest with caution.
-// http://sugarjs.com/native
-// you won't get rid of it so soon!!! (moooohahahaha!)
+// baaaaahhh
 require('sugar');
 
 nodestrum.register_process_catcher();

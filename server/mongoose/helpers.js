@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 mongoose.Model.paginate = function(query, page, records, callback){
     page || (page = 1);
-    page = page.toNumber().abs();
+    page = Math.abs(Number(page));
 
     var from = (page * records) - records;
 
@@ -17,7 +17,7 @@ mongoose.Model.paginate = function(query, page, records, callback){
         query.count(function(err, count){
             // restoring query options? not necessarily needed?
             query.options = o;
-            callback(err, results, count, (count / (records || count)).ceil());
+            callback(err, results, count, Math.ceil(count / (records || count)));
         });
 
     });
