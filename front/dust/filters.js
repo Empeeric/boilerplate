@@ -14,7 +14,7 @@ dust.filters.seo = function(value){
 // Create new br tag for each line in a string
 // Join empty multiple lines to one br tag
 dust.filters.br = function(value){
-    return value.lines().remove('').join('<br />');
+    return value.replace('\r', '').replace('\n\n', '\n').split('\n').join('<br />');
 };
 
 // Create new br tag for each line in a string
