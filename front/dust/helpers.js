@@ -37,7 +37,7 @@ dust.helpers.cloudinary = function() {
     List Helper
     return a list of documents
 
-{@content model="model_name" [
+{@list model="model_name" [
      limit="number of rows to limit", --default is 0 -all records
      order_by="field",                --default is order
      sort="asc|desc",                 --default is asc
@@ -45,7 +45,7 @@ dust.helpers.cloudinary = function() {
      navigation="true|false"          --default is true
 ]}
      {#items}{.}{/items}
-{/content}
+{/list}
 
 TODO:
     findAll if no navigation field in schema
@@ -54,7 +54,7 @@ TODO:
     params.records = pagniate if not false
     test
 */
-dust.helpers.content = function(chunk, context, bodies, params){
+dust.helpers.list = function(chunk, context, bodies, params){
     params || (params = {});
     var model =  models[params.model],
         page = context.get('page'),
@@ -188,7 +188,7 @@ dust.helpers.stripTags = function (chunk, context, bodies, params) {
     {#prev}<a href="{link}">prev</a>{/prev}
     {#next}<a href="{link}">next</a>{/next}
     <ul>
-    {#range}
+    {#pages}
         {#current}
             <span>{num}</span>
         {:else}
@@ -196,7 +196,7 @@ dust.helpers.stripTags = function (chunk, context, bodies, params) {
         {/current}
 
         <a href="{link}" {#current}class="active"{/current}>{num}</a>
-    {/range}
+    {/pages}
     </ul>
 {/paginate}
  */
