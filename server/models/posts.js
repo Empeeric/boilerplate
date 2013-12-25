@@ -53,7 +53,7 @@ schema.path('url').validate(function(v, callback){
     });
 }, 'url already exists');
 
-model.schema = {
+schema.formage = {
     list: ['navigation', 'title', 'picture', 'show'],
     list_populate: ['navigation'],
     sortable: 'order'

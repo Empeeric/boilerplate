@@ -30,7 +30,7 @@ schema.methods.toString = function(){
 };
 
 schema.formage = {
-    list: ['name']
+    list: ['mame', 'models']
 };
 
 var model = module.exports = mongoose.model('templates', schema);
