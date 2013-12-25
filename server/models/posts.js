@@ -1,7 +1,8 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     Types = Schema.Types,
-    async = require('async');
+    async = require('async'),
+    dust = require('dustjs-linkedin');
 
 var schema = new Schema({
     navigation: { type: Types.ObjectId, ref: 'navigation' },
@@ -51,6 +52,9 @@ schema.path('url').validate(function(v, callback){
         callback(!err);
     });
 }, 'url already exists');
+
+
+
 
 var model = module.exports = mongoose.model('posts', schema);
 model.formage = {

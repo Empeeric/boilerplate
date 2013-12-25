@@ -69,6 +69,7 @@ mongoose.connect(registry.mongo_cfg);
 require('../front/dust/helpers');
 require('../front/dust/filters');
 require('./mongoose/helpers');
+require('./cms');
 require('./routes');
 
 var server = registry.server = http.createServer(app);

@@ -113,7 +113,7 @@ dust.helpers.doc = function(chunk, context, bodies, params) {
 };
 
 // Menu Helper
-// Fetch navigation model as the cms's main menu
+// Fetch navigation model as the CMS' main menu
 dust.helpers.menu = function(chunk, context, bodies) {
     var page = context.get('page'),
         crumbs = context.get('crumbs');

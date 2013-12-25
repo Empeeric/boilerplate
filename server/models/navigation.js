@@ -48,6 +48,45 @@ schema.statics.findRecursive = function(cb) {
         });
 };
 
+/*
+    Find crumbs of current page,
+    assumed to be at `res.locals.page`
+    results at
+        `res.locals.crumbs`
+ */
+schema.statics.crumbs = function() {
+    var nav = this;
+
+    return function(req, res, next) {
+        var crumbs = [];
+
+        var parent = function(id) {
+            nav.findById(id)
+                .select('parent url title')
+                .lean()
+                .exec(function(err, page) {
+                    if (err) return next(err);
+                    if (page) {
+                        crumbs.push(page);
+                        return parent(page.parent);
+                    }
+                    crumbs.reverse().forEach(function (crumb, i) {
+                        crumb.last = i == res.locals.crumbs.length - 1;
+                    });
+                    next();
+                });
+        };
+        if (res.locals.post) {
+            crumbs.push(res.locals.post);
+        }
+        if (res.locals.page) {
+            crumbs.push(res.locals.page);
+            parent(res.locals.page.parent);
+        }
+        else next();
+    }
+};
+
 schema.pre('validate', function(next) {
     var url = this.url;
 

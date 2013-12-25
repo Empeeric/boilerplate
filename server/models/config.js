@@ -27,10 +27,24 @@ var schema = new Schema({
     }
 });
 
+/*
+    Return site config and some other:
+        res.locals.config
+        res.locals.http_params
+ */
 schema.statics.middleware = function() {
     var config = this;
     return function(req, res, next) {
-        config.findOne().lean().exec(function(err, config){
+        config.findOne().lean().exec(function(err, config) {
+
+            res.locals.http_params = {
+                query: req.query,
+                headers: req.headers,
+                body: req.body,
+                url: req.url,
+                debug: req.app.get('env') == 'development'
+            };
+
             res.locals.config = config;
             next(err);
         });
