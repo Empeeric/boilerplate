@@ -10,7 +10,7 @@ var schema = new Schema({
     parent: { type: Types.ObjectId, ref: 'navigation' },
     title: { type: String, required: true, trim: true },
     url: { type: String, trim: true, lowercase: true, unique: true },
-    template: { type: String, enum: views, default: 'index' },
+    template: { type:  Types.ObjectId, ref: 'templates' },
     text: { type: Types.Html },
     order: { type: Number, editable: false },
     menu: { type: Boolean, 'default': true },
@@ -124,9 +124,11 @@ schema.path('url').validate(function(v, callback){
     });
 }, 'url already exists');
 
-var model = module.exports = mongoose.model('navigation', schema);
-model.formage = {
+schema.formage = {
     list: ['title', 'parent', 'url', 'menu', 'show'],
     sortable: 'order',
     list_populate: ['parent']
 };
+
+var model = module.exports = mongoose.model('navigation', schema);
+

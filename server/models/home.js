@@ -5,7 +5,9 @@ var schema = new mongoose.Schema({
 
 });
 
-var model = module.exports = mongoose.model('home', schema);
-model.formage = {
+schema.formage = {
     is_single: true
 };
+
+var model = module.exports = mongoose.model('home', schema);
+

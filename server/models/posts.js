@@ -53,10 +53,11 @@ schema.path('url').validate(function(v, callback){
     });
 }, 'url already exists');
 
-
-
+model.schema = {
+    list: ['navigation', 'title', 'picture', 'show'],
+    list_populate: ['navigation'],
+    sortable: 'order'
+};
 
 var model = module.exports = mongoose.model('posts', schema);
-model.formage = {
-    list: ['navigation', 'title', 'picture', 'show']
-};
+
