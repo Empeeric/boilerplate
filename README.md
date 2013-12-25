@@ -1,7 +1,6 @@
-boilerplate
+boilerplate [![Build Status](https://travis-ci.org/Empeeric/boilerplate.png?branch=master)](https://travis-ci.org/Empeeric/boilerplate)
 ===========
 
 Boil it, plate it, fill it, serve it.
 
-
-[![Build Status](https://travis-ci.org/Empeeric/boilerplate.png?branch=master)](https://travis-ci.org/Empeeric/boilerplate)
+![http://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Vertical_cross-tube_boiler_%28Brockhaus%29.jpg/337px-Vertical_cross-tube_boiler_%28Brockhaus%29.jpg](http://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Vertical_cross-tube_boiler_%28Brockhaus%29.jpg/337px-Vertical_cross-tube_boiler_%28Brockhaus%29.jpg)
