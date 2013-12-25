@@ -2,22 +2,12 @@ var registry = require('./global');
 var app = require.main.exports.app,
     models = require('./models'),
     dust = require('dustjs-linkedin'),
-    mail = require('nodemailer').createTransport('SMTP', {service: "SendGrid", auth: registry.SENDGRID_AUTH});
+    mail = require('nodemailer').createTransport('SMTP', {service: "SendGrid", auth: registry.SENDGRID_AUTH}),
+    config = models.config.middleware;
 
 /*
  middle-wares
  */
-
-var config = function (req, res, next) {
-    models
-        .config
-        .findOne()
-        .lean()
-        .exec(function (err, config) {
-            req.config = config;
-            next(err);
-        })
-};
 
 
 var page = function (req, res, next) {

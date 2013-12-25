@@ -27,5 +27,18 @@ var schema = new Schema({
     }
 });
 
+schema.statics.middleware = function() {
+    var config = this;
+    return function(req, res, next) {
+        config.findOne().lean().exec(function(err, config){
+            res.locals.config = config;
+            next(err);
+        });
+    }
+};
+
 var model = module.exports = mongoose.model('config', schema);
-model.formage = { section: 'Configuration', is_single: true };
+model.formage = {
+    section: 'Configuration',
+    is_single: true
+};
