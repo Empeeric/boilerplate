@@ -58,6 +58,10 @@ app.get('*', [ config, getByUrl, crumbs ], function (req, res, next) {
     if (!res.locals.page)
         return next();
 
+//    res.json({
+//        page: res.locals.page
+//    });
+
     res.render(res.locals.page.template || 'index');
 });
 

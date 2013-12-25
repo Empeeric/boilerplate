@@ -1,0 +1,32 @@
+{>layout/}
+
+{<page}
+    <div id="preface">
+        <div class="container">
+            <h2>{page.title}</h2>
+        </div>
+    </div>
+
+    <div class="top-space">
+        <div class="container narrow"><a href="#" class="ui_button">Edit Address Map </a>
+
+            <form action="" method="post">
+                <input name="name" type="text" data-require="any" data-placeholder="Your name"/>
+                <input name="email" type="text" data-require="email" data-placeholder="E-mail"/>
+                <input name="name" type="text" data-require="any" data-placeholder="Your name"/>
+                <input name="email" type="text" data-require="email" data-placeholder="E-mail"/>
+                <input name="email" type="text" data-require="email" data-placeholder="E-mail"/>
+                <label>Upload</label>
+                <a href="#" class="ui_button top">Upload photo </a><br>
+
+                <div id="upload-preview">
+                    <label>Preview</label>
+                    <img src="photos/works/01.jpg" width="100%"></div>
+                <textarea name="message" data-require="any" data-placeholder="Message"></textarea>
+                <textarea name="message" data-require="any" data-placeholder="Message"></textarea>
+                <input name="email" type="text" data-require="email" data-placeholder="E-mail"/>
+                <input type="submit" value="Submit" class="float  ui_button"/>
+            </form>
+        </div>
+    </div>
+{/page}

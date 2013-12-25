@@ -1,0 +1,21 @@
+{>layout/}
+
+{<page}
+    <div id="preface">
+        <div class="container">
+            <h2>{page.title}</h2>
+        </div>
+    </div>
+
+    <div id="about">
+        <div class="container ">
+            {page.text|s}
+        </div>
+        <div class="container">
+            <div class="video-wide">
+                <iframe width="100%" height="100%" src="//www.youtube.com/embed/uZ48IEMejIA?autoplay=false" frameborder="0"
+                        allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+{/page}

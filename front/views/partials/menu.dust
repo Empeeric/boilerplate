@@ -1,9 +1,10 @@
-{@menu}
-    <ul id="lstMenu">
-        {#items}
-        <li class="{?dock}selected{/dock}">
-            <a href="{url}" title="{title}">{title}</a>
+<ul>
+    {#items}
+        <li class="{?dock}current-menu-item{/dock} {?sub.items}submenu{/sub.items}">
+            <a href="{url}">{title}</a>
+            {?sub.items}
+                {#sub}{>"partials/menu.dust":./}{/sub}
+            {/sub.items}
         </li>
-        {/items}
-    </ul>
-{/menu}
+    {/items}
+</ul>

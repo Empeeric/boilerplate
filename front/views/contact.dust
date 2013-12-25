@@ -1,0 +1,23 @@
+{>layout/}
+
+{<page}
+    <div id="preface">
+        <div class="container">
+            <h2>{page.title}</h2>
+        </div>
+    </div>
+
+    <div id="about">
+        <div class="container ">
+            {page.text|s}
+        </div>
+        <div class="container narrow">
+            <form action="/thank-you" method="post">
+                <input name="name" type="text" data-require="any" data-placeholder="Your name"/>
+                <input name="email" type="text" data-require="email" data-placeholder="E-mail"/>
+                <textarea name="message" data-require="any" data-placeholder="Message"></textarea>
+                <input type="submit" value="Send" class="float right ui_button"/>
+            </form>
+        </div>
+    </div>
+{/page}

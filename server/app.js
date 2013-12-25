@@ -7,20 +7,16 @@ var nodestrum = require('nodestrum'),
     models = require('./models'),
     http = require('http'),
     dust = require('dustjs-linkedin'),
-    consolidate = require('consolidate'),
-    resors = require('resors');
-
-// baaaaahhh
-require('sugar');
+    consolidate = require('consolidate');
 
 nodestrum.register_process_catcher();
 
 var app = module.exports.app = express();
 
-app.set('site', 'Empeeric Boilerplate');
+app.set('site', 'One-Two-Free');
 app.engine('dust', consolidate.dust);
 app.set('view engine', 'dust');
-app.set('views', path.join(__dirname, '..', 'frontend', 'views'));
+app.set('views', path.join(__dirname, '..', 'front', 'views'));
 
 app.use(nodestrum.domain_wrapper_middleware);
 app.use(express.compress());
@@ -40,18 +36,16 @@ app.use(function (req, res, next) {
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 formage.init(app, express, models, {
-    title: app.get('site') + ' Admin',
-    default_section: 'CMS'
+    title: app.get('site') + ' Admin'
 });
 
 app.use(app.router);
 
-// TODO: this is a public repository, right?
-app.use('/1EjvWMNot8v14KV8qKYtzYwYyS2SShpiDh/api', resors.middleware(models));
-
 app.use(function (req, res, next) {
-    res.locals.page = { title: req.config._404.title};
-    res.locals.config = req.config;
+    if (res.locals.config) {
+        res.locals.page = { title: res.locals.config._404.title};
+        res.locals.config = req.config;
+    }
 
     res.status(404).render('404');
 });
@@ -59,9 +53,7 @@ app.use(function (req, res, next) {
 app.use(express.errorHandler());
 
 // development only
-if (nodestrum.isDebug('templates')) {
-    dust.optimizers.format = function(ctx, node) { return node };
-}
+dust.optimizers.format = function(ctx, node) { return node };
 
 mongoose.connect(registry.mongo_cfg);
 

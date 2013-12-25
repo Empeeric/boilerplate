@@ -3,21 +3,22 @@ var _ = require('lodash'),
     Schema = mongoose.Schema,
     Types = Schema.Types,
     async = require('async'),
-    views = require('../../frontend/views/');
+    views = require('../../front/views/');
 
 
 var schema = new Schema({
     parent: { type: Types.ObjectId, ref: 'navigation' },
+    title: { type: String, required: true, trim: true },
+    url: { type: String, trim: true, lowercase: true, unique: true },
+    template: { type: String, enum: views, default: 'index' },
+    text: { type: Types.Html },
+    order: { type: Number, editable: false },
+    menu: { type: Boolean, 'default': true },
+    show: { type: Boolean, 'default': true },
     meta: [{
         name: { type: String },
         content: { type: Types.Text }
-    }],
-    title: { type: String, required: true, trim: true },
-    url: { type: String, trim: true, lowercase: true, unique: true },
-    template: { type: String, enum: views, default: 'homepage' },
-    order: { type: Number, editable: false },
-    menu: { type: Boolean, 'default': true },
-    show: { type: Boolean, 'default': true }
+    }]
 });
 
 schema.methods.toString = function(){
@@ -71,8 +72,9 @@ schema.statics.crumbs = function() {
                         return parent(page.parent);
                     }
                     crumbs.reverse().forEach(function (crumb, i) {
-                        crumb.last = i == res.locals.crumbs.length - 1;
+                        crumb.last = i == crumbs.length - 1;
                     });
+                    res.locals.crumbs = crumbs;
                     next();
                 });
         };
@@ -124,5 +126,7 @@ schema.path('url').validate(function(v, callback){
 
 var model = module.exports = mongoose.model('navigation', schema);
 model.formage = {
-    list: ['title', 'parent', 'url', 'menu', 'show']
+    list: ['title', 'parent', 'url', 'menu', 'show'],
+    sortable: 'order',
+    list_populate: ['parent']
 };

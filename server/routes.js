@@ -7,7 +7,9 @@ var registry = require('./global'),
     }),
     config = models.config.middleware();
 
-//app.get('/get-on-with-it');
+app.get('/w', function() {
+
+});
 
 /*
 app.post('/thank-you', config, function (req, res) {

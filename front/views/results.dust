@@ -1,0 +1,133 @@
+{>layout/}
+
+{<page}
+    <div id="preface" class="top-space">
+        <div class="container grid search ">
+            <div class="row ">
+                <div class="col-3-13">&nbsp;</div>
+                <div class="col-1-6   nopadding right">
+                    <div class="ui_select ui_filter_switch  "  >
+                        <label> What </label>
+                        <ul class="">
+                            <li class="active"> <a data-ui_select_value="all"> ALL </a> </li>
+                            <li> <a data-ui_select_value="popular"> MOST POPULAR </a> </li>
+                            <li> <a data-ui_select_value="recent"> MOST RECENT </a> </li>
+                            <li> <a data-ui_select_value="comments"> MOST COMMENTED </a> </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-1-6 center nopadding ">
+                    <div class="ui_select ui_filter_switch  " >
+                        <label> Where </label>
+                        <ul class="">
+                            <li class="active"> <a data-ui_select_value="all"> ALL </a> </li>
+                            <li> <a data-ui_select_value="popular"> MOST POPULAR </a> </li>
+                            <li> <a data-ui_select_value="recent"> MOST RECENT </a> </li>
+                            <li> <a data-ui_select_value="comments"> MOST COMMENTED </a> </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-1-5 center nopadding"><a href="#" class="ui_button green search">Search ! </a></div>
+                <div class="col-3-13">&nbsp;</div>
+            </div>
+        </div>
+    </div>
+    <ul class="smallcontainer">
+        <li>&raquo;Today</li>
+        <li>&raquo;Tomorrow</li>
+        <li>&raquo;After Tomorrow</li>
+        <li>&nbsp;</li>
+        <li>Only Discount&raquo;</li>
+        <li>Near Me&raquo;</li>
+    </ul>
+    <div class="container search " id="portfolio">
+        <div class="container grid search results">
+            <div class="row ">
+                <div class="col-1-14"><img src="images/icon.png"><span>500 m</span></div>
+                <div class="col-2-12 ">
+                    <h4>Carmen Graf</h4>
+                    taj mahhaar<br>
+                    uasd 33 sdsd,Bern</div>
+                <div class="col-4-16 nopadding">
+                    <div class="details-box">today, 14/11/2013<br>
+                        <span>From:</span>12:00 <span>To:</span>13:30</div>
+                </div>
+                <div class="col-2-16 center nopadding">15% Discount</div>
+                <div class="col-4-16 smallpadding">
+                    <div class="details-box"><span>Phone:</span>0545556899<br>
+                        <a href="#">More Details &raquo;</a></div>
+                </div>
+                <div class="col-2-16"><a href="#" class="ui_button big">Order Now</a></div>
+            </div>
+            <div class="row ">
+                <div class="col-1-14"><img src="images/icon.png"><span>500 m</span></div>
+                <div class="col-2-12 ">
+                    <h4>Carmen Graf</h4>
+                    taj mahhaar<br>
+                    uasd 33 sdsd,Bern</div>
+                <div class="col-4-16 nopadding">
+                    <div class="details-box">today, 14/11/2013<br>
+                        <span>From:</span>12:00 <span>To:</span>13:30</div>
+                </div>
+                <div class="col-2-16 center nopadding">15% Discount</div>
+                <div class="col-4-16 smallpadding">
+                    <div class="details-box"><span>Phone:</span>0545556899<br>
+                        <a href="#">More Details &raquo;</a></div>
+                </div>
+                <div class="col-2-16"><a href="#" class="ui_button big">Order Now</a></div>
+            </div>
+            <div class="row ">
+                <div class="col-1-14"><img src="images/icon.png"><span>500 m</span></div>
+                <div class="col-2-12 ">
+                    <h4>Carmen Graf</h4>
+                    taj mahhaar<br>
+                    uasd 33 sdsd,Bern</div>
+                <div class="col-4-16 nopadding">
+                    <div class="details-box">today, 14/11/2013<br>
+                        <span>From:</span>12:00 <span>To:</span>13:30</div>
+                </div>
+                <div class="col-2-16 center nopadding">15% Discount</div>
+                <div class="col-4-16 smallpadding">
+                    <div class="details-box"><span>Phone:</span>0545556899<br>
+                        <a href="#">More Details &raquo;</a></div>
+                </div>
+                <div class="col-2-16"><a href="#" class="ui_button big">Order Now</a></div>
+            </div>
+            <div class="row ">
+                <div class="col-1-14"><img src="images/icon.png"><span>500 m</span></div>
+                <div class="col-2-12 ">
+                    <h4>Carmen Graf</h4>
+                    taj mahhaar<br>
+                    uasd 33 sdsd,Bern</div>
+                <div class="col-4-16 nopadding">
+                    <div class="details-box">today, 14/11/2013<br>
+                        <span>From:</span>12:00 <span>To:</span>13:30</div>
+                </div>
+                <div class="col-2-16 center nopadding">15% Discount</div>
+                <div class="col-4-16 smallpadding">
+                    <div class="details-box"><span>Phone:</span>0545556899<br>
+                        <a href="#">More Details &raquo;</a></div>
+                </div>
+                <div class="col-2-16"><a href="#" class="ui_button big">Order Now</a></div>
+            </div>
+            <div class="row ">
+                <div class="col-1-14"><img src="images/icon.png"><span>500 m</span></div>
+                <div class="col-2-12 ">
+                    <h4>Carmen Graf</h4>
+                    taj mahhaar<br>
+                    uasd 33 sdsd,Bern</div>
+                <div class="col-4-16 nopadding">
+                    <div class="details-box">today, 14/11/2013<br>
+                        <span>From:</span>12:00 <span>To:</span>13:30</div>
+                </div>
+                <div class="col-2-16 center nopadding">15% Discount</div>
+                <div class="col-4-16 smallpadding">
+                    <div class="details-box"><span>Phone:</span>0545556899<br>
+                        <a href="#">More Details &raquo;</a></div>
+                </div>
+                <div class="col-2-16"><a href="#" class="ui_button big green">Order Now</a></div>
+            </div>
+        </div>
+        <div class="container center top-space"> <a class="ui_button" href="#"> Load More </a> </div>
+    </div>
+{/page}

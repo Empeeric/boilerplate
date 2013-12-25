@@ -1,0 +1,44 @@
+{>layout/}
+
+{<page}
+<div id="preface" class="top-space">
+    <div class="container grid search ">
+        <div class="row ">
+            <div class="col-3-13">&nbsp;</div>
+            <div class="col-1-6   nopadding right">
+                <div class="ui_select ui_filter_switch  ">
+                    <label> What </label>
+                    <ul class="">
+                        <li class="active"><a data-ui_select_value="all"> ALL </a></li>
+                        <li><a data-ui_select_value="popular"> MOST POPULAR </a></li>
+                        <li><a data-ui_select_value="recent"> MOST RECENT </a></li>
+                        <li><a data-ui_select_value="comments"> MOST COMMENTED </a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-1-6 center nopadding ">
+                <div class="ui_select ui_filter_switch  ">
+                    <label> Where </label>
+                    <ul class="">
+                        <li class="active"><a data-ui_select_value="all"> ALL </a></li>
+                        <li><a data-ui_select_value="popular"> MOST POPULAR </a></li>
+                        <li><a data-ui_select_value="recent"> MOST RECENT </a></li>
+                        <li><a data-ui_select_value="comments"> MOST COMMENTED </a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-1-5 center nopadding"><a href="#" class="ui_button green search">Search ! </a></div>
+            <div class="col-3-13">&nbsp;</div>
+        </div>
+    </div>
+</div>
+
+<div class="container search center">
+    <br/>
+    <br/>
+    <h3>
+        Lasst uns zusammenarbeiten,<br />
+        denn die Nachfrage nach kurzfristigen Terminen ist da!
+    </h3>
+</div>
+{/page}
