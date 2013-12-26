@@ -59,5 +59,5 @@ schema.formage = {
     sortable: 'order'
 };
 
-var model = module.exports = mongoose.model('posts', schema);
+module.exports = schema;
 

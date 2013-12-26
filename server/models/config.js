@@ -56,5 +56,5 @@ schema.formage = {
     is_single: true
 };
 
-var model = module.exports = mongoose.model('config', schema);
+module.exports = schema;
 
