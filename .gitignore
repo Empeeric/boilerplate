@@ -15,3 +15,11 @@ results
 npm-debug.log
 /node_modules
 /dump
+/coverage
+/public/**/*.md
+/public/**/*.txt
+/public/**/Makefile
+/public/**/*LICENSE*
+/public/**/*.less
+/public/**/test/**
+/public/**/.*
