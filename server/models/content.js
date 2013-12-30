@@ -14,8 +14,9 @@ schema.methods.toString = function(){
     return this.title;
 };
 
-var model = module.exports = mongoose.model('content', schema);
-model.formage = {
+schema.formage = {
     list: ['navigation', 'title', 'show'],
     list_populate: ['navigation']
 };
+
+var model = module.exports = mongoose.model('content', schema);

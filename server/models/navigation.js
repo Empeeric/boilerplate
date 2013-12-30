@@ -122,7 +122,8 @@ schema.path('url').validate(function(v, callback){
     });
 }, 'url already exists');
 
-var model = module.exports = mongoose.model('navigation', schema);
-model.formage = {
+schema.formage = {
     list: ['title', 'parent', 'url', 'menu', 'show']
 };
+
+var model = module.exports = mongoose.model('navigation', schema);
