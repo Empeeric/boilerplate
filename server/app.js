@@ -7,11 +7,11 @@ var nodestrum = require('nodestrum'),
     models = require('./models'),
     http = require('http'),
     dust = require('dustjs-linkedin'),
-    consolidate = require('consolidate'),
-    resors = require('resors');
+    consolidate = require('consolidate');
+//    resors = require('resors');
 
 // baaaaahhh
-require('sugar');
+//require('sugar');
 
 nodestrum.register_process_catcher();
 
@@ -20,7 +20,7 @@ var app = module.exports.app = express();
 app.set('site', 'Empeeric Boilerplate');
 app.engine('dust', consolidate.dust);
 app.set('view engine', 'dust');
-app.set('views', path.join(__dirname, '..', 'frontend', 'views'));
+app.set('views', path.join(__dirname, '..', 'front', 'views'));
 
 app.use(nodestrum.domain_wrapper_middleware);
 app.use(express.compress());
@@ -46,20 +46,12 @@ formage.init(app, express, models, {
 
 app.use(app.router);
 
-// TODO: this is a public repository, right?
-app.use('/1EjvWMNot8v14KV8qKYtzYwYyS2SShpiDh/api', resors.middleware(models));
-
-app.use(function (req, res, next) {
-    res.locals.page = { title: req.config._404.title};
-    res.locals.config = req.config;
-
-    res.status(404).render('404');
-});
-
-app.use(express.errorHandler());
+// uncomment if you need
+//app.use('/1EjvWMNot8v14KV8qKYtzYwYyS2SShpiDh/api', resors.middleware(models));
 
 // development only
 if (nodestrum.isDebug('templates')) {
+    app.use(express.errorHandler());
     dust.optimizers.format = function(ctx, node) { return node };
 }
 
@@ -69,7 +61,7 @@ mongoose.connect(registry.mongo_cfg);
 require('../front/dust/helpers');
 require('../front/dust/filters');
 require('./mongoose/helpers');
-require('./cms');
+require('./routes/cms');
 require('./routes');
 
 var server = registry.server = http.createServer(app);
