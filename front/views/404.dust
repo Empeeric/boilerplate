@@ -1,23 +1,8 @@
 {>layout/}
 
-{<style}
-    <style type="text/css" media="all">
-        .page-heading {
-            display: none
-        }
-    </style>
-{/style}
-
-
 {<page}
-<article>
-    <div class="container page-content mobile-padding">
-        <div class="row">
-            <div class="span12">
-            <h1>{config._404.title} <small>({page.title})</small></h1>
-            {config._404.content|s}
-            </div>
-        </div>
-    </div>
-</article>
+    <h2>{page.title}</h2>
+    <p>
+        <a href="/">Don't worry.</a>
+    </p>
 {/page}

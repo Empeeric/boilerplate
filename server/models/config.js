@@ -45,7 +45,9 @@ schema.statics.middleware = function() {
                 debug: req.app.get('env') == 'development'
             };
 
-            res.locals.config = config;
+            res.locals.config = config || {
+                title: req.app.get('site')
+            };
             next(err);
         });
     }

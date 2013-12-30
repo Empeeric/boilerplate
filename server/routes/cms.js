@@ -60,9 +60,11 @@ app.get('*', [ config, getByUrl, crumbs ], function (req, res, next) {
 app.use(config);
 app.use(function (req, res) {
     if (req.config) {
-        res.locals.page = { title: req.config._404.title};
+        res.locals.page = { title: req.config._404.title };
         res.locals.config = req.config;
     }
+    else
+        res.locals.page = { title: 'The page was not found.' };
 
     res.status(404).render('404');
 });

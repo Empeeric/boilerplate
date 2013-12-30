@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html>
 <head>
     <meta charset="utf-8">
 
@@ -20,59 +17,18 @@
         <link rel="apple-touch-icon" sizes="144x144" href="{@cloudinary width="144" height="144" crop="fill"/}">
     {/config.icon}
 
-    <link rel="stylesheet" href="content/css/normalize.css">
-    <link rel="stylesheet" href="content/css/main.css">
-
-    <script type="text/javascript"> var Bootstrap = {}; </script>
-    <script src="/content/js/vendor/sugar-1.3.9.min.js"></script>
-    <script src="/content/js/vendor/modernizr-2.6.2.min.js"></script>
-    <script src="/content/js/vendor/base.class.js"></script>
-    <script src="/content/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
 
-<div class="main-container">
-    <div class="toparea">
-        <a href="/"><img class="logo" src="{#config}{@cloudinary path="logo" width="245" height="121" crop="fill" /}{/config}"/></a>
+<h1>{config.title}</h1>
 
-
-        <div class="banner">{#config.banner}<img src="{@cloudinary width="630" height="130" crop="fill" /}" alt=""/>{:else}630x130{/config.banner}</div>
-    </div>
-    <div class="presarea">
-        {@banners}
-        <div id="header-images">
-            {#pictures}
-            <img src="{@cloudinary path="picture" width="960" height="358" crop="fill" /}"/>
-            {/pictures}
-        </div>
-        <div class="presarea-layer">
-
-            <img class="header-title" src="{@cloudinary path="title" width="304" height="98" crop="fill" /}"/>
-
-            <p class="header-content">
-                {text|br|s}
-            </p>
-        </div>
-        {/banners}
-    </div>
-    <div class="topbox">
-        <nav>
-            <div class="nav">
-                {>"partials/menu.dust"/}
-            </div>
-        </nav>
-    </div>
-    <div id="content">
+<nav>
+    {@menu}{>"partials/menu.dust"/}{/menu}
+</nav>
+<div id="content">
     {+page/}
-    </div>
 </div>
-
-<script src="/content/js/plugins.js"></script>
-<script src="/content/js/main.js"></script>
-
-{#config.snippets}
-    {.|s}
-{/config.snippets}
 
 {+scripts/}
 
