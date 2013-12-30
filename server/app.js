@@ -1,4 +1,5 @@
 var registry = require('./global');
+
 var nodestrum = require('nodestrum'),
     express = require('express'),
     path = require('path'),
@@ -44,10 +45,15 @@ formage.init(app, express, models, {
     default_section: 'CMS'
 });
 
-app.use(app.router);
 
-// uncomment if you need
-//app.use('/1EjvWMNot8v14KV8qKYtzYwYyS2SShpiDh/api', resors.middleware(models));
+/*
+ uncomment when needed
+ */
+//app.use('/api', resors.middleware(models));
+//require('./passport')
+//require('./routes/users');
+
+app.use(app.router);
 
 // development only
 if (nodestrum.isDebug('templates')) {
