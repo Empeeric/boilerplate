@@ -45,14 +45,17 @@ schema.statics.middleware = function() {
                 debug: req.app.get('env') == 'development'
             };
 
-            res.locals.config = config;
+            res.locals.config = config || {
+                title: req.app.get('site')
+            };
             next(err);
         });
     }
 };
 
-var model = module.exports = mongoose.model('config', schema);
-model.formage = {
+schema.formage = {
     section: 'Configuration',
     is_single: true
 };
+
+var model = module.exports = mongoose.model('config', schema);

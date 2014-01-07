@@ -8,17 +8,16 @@ var _ = require('lodash'),
 
 var schema = new Schema({
     parent: { type: Types.ObjectId, ref: 'navigation' },
-    title: { type: String, required: true, trim: true },
-    url: { type: String, trim: true, lowercase: true, unique: true },
-    template: { type: String, enum: views, default: 'index' },
-    text: { type: Types.Html },
-    order: { type: Number, editable: false },
-    menu: { type: Boolean, 'default': true },
-    show: { type: Boolean, 'default': true },
     meta: [{
         name: { type: String },
         content: { type: Types.Text }
-    }]
+    }],
+    title: { type: String, required: true, trim: true },
+    url: { type: String, trim: true, lowercase: true, unique: true },
+    template: { type: String, enum: views, default: 'index' },
+    order: { type: Number, editable: false },
+    menu: { type: Boolean, 'default': true },
+    show: { type: Boolean, 'default': true }
 });
 
 schema.methods.toString = function(){
@@ -71,10 +70,8 @@ schema.statics.crumbs = function() {
                         crumbs.push(page);
                         return parent(page.parent);
                     }
-                    crumbs.reverse().forEach(function (crumb, i) {
-                        crumb.last = i == crumbs.length - 1;
-                    });
-                    res.locals.crumbs = crumbs;
+                    crumbs[0].last = true;
+                    res.locals.crumbs = crumbs.reverse();
                     next();
                 });
         };
@@ -124,9 +121,8 @@ schema.path('url').validate(function(v, callback){
     });
 }, 'url already exists');
 
-var model = module.exports = mongoose.model('navigation', schema);
-model.formage = {
-    list: ['title', 'parent', 'url', 'menu', 'show'],
-    sortable: 'order',
-    list_populate: ['parent']
+schema.formage = {
+    list: ['title', 'parent', 'url', 'menu', 'show']
 };
+
+var model = module.exports = mongoose.model('navigation', schema);

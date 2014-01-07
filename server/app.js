@@ -1,4 +1,5 @@
 var registry = require('./global');
+
 var nodestrum = require('nodestrum'),
     express = require('express'),
     path = require('path'),
@@ -8,12 +9,16 @@ var nodestrum = require('nodestrum'),
     http = require('http'),
     dust = require('dustjs-linkedin'),
     consolidate = require('consolidate');
+//    resors = require('resors');
+
+// baaaaahhh
+//require('sugar');
 
 nodestrum.register_process_catcher();
 
 var app = module.exports.app = express();
 
-app.set('site', 'One-Two-Free');
+app.set('site', 'Empeeric Boilerplate');
 app.engine('dust', consolidate.dust);
 app.set('view engine', 'dust');
 app.set('views', path.join(__dirname, '..', 'front', 'views'));
@@ -36,24 +41,25 @@ app.use(function (req, res, next) {
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 formage.init(app, express, models, {
-    title: app.get('site') + ' Admin'
+    title: app.get('site') + ' Admin',
+    default_section: 'CMS'
 });
+
+
+/*
+ uncomment when needed
+ */
+//app.use('/api', resors.middleware(models));
+//require('./passport')
+//require('./routes/users');
 
 app.use(app.router);
 
-app.use(function (req, res, next) {
-    if (res.locals.config) {
-        res.locals.page = { title: res.locals.config._404.title};
-        res.locals.config = req.config;
-    }
-
-    res.status(404).render('404');
-});
-
-app.use(express.errorHandler());
-
 // development only
-dust.optimizers.format = function(ctx, node) { return node };
+if (nodestrum.isDebug('templates')) {
+    app.use(express.errorHandler());
+    dust.optimizers.format = function(ctx, node) { return node };
+}
 
 mongoose.connect(registry.mongo_cfg);
 
@@ -61,7 +67,7 @@ mongoose.connect(registry.mongo_cfg);
 require('../front/dust/helpers');
 require('../front/dust/filters');
 require('./mongoose/helpers');
-require('./cms');
+require('./routes/cms');
 require('./routes');
 
 var server = registry.server = http.createServer(app);

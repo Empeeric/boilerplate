@@ -1,80 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+
     <title>{page.title}</title>
-    <!-- SETTINGS -->
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="format-detection" content="telephone=no"/>
-    <!-- STYLES -->
-    <link href="/css/reset.css" rel="stylesheet"/>
-    <link href="/css/animations.css" rel="stylesheet"/>
-    <link href="/css/awesome.css" rel="stylesheet"/>
-    <link href="/css/grid.css" rel="stylesheet"/>
-    <link href="/lib/revolution/css/revolution.css" rel="stylesheet"/>
-    <link href="/lib/bxslider/jquery.bxslider.css" rel="stylesheet"/>
-    <link href="/lib/fancybox/jquery.fancybox.css" rel="stylesheet"/>
-    <link href="/css/main.css" rel="stylesheet"/>
+
+    {#page.meta}
+        <meta name="{name}" content="{content}"/>
+    {/page.meta}
+
+    {#config.icon}
+        <link rel="icon" type="image/png" href="{@cloudinary width="16" height="16" crop="fill"/}">
+        <link rel="apple-touch-icon" href="{@cloudinary width="57" height="57" crop="fill"/}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{@cloudinary width="114" height="114" crop="fill"/}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{@cloudinary width="72" height="72" crop="fill"/}">
+        <link rel="apple-touch-icon" sizes="144x144" href="{@cloudinary width="144" height="144" crop="fill"/}">
+    {/config.icon}
+
+    <link rel="stylesheet" href="/css/main.css">
 </head>
-<body data-page="about" data-boxed="false">
-<!-- LAYOUT -->
-<div id="layout">
-    <!-- HEADER -->
-    <div id="header">
-        <div class="container">
-            <div class="wrapper">
-                <!-- MAIN MENU -->
-                <ul id="menu" class="full">
-                    <li class="submenu"><a>Menu</a>
-                        {@menu}{>"partials/menu.dust"/}{/menu}
-                    </li>
-                </ul>
-                <!-- LOGO -->
-                <div id="logo"><a href="/"> <img src="/images/logo.png" alt="" width="100%"/> </a></div>
-            </div>
-        </div>
-    </div>
+<body>
 
+<h1>{config.title}</h1>
+
+<nav>
+    {@menu}{>"partials/menu.dust"/}{/menu}
+</nav>
+<div id="content">
     {+page/}
-    <div id="request"><img src="photos/wide.jpg" width="100%"></div>
-
-    <div id="footer_bottom">
-        <div class="container grid">
-            <ul class="row">
-                <li class="col-1-3">{config.copyright}</li>
-                <li class="col-2-3 right">
-                    <!-- NAVIGATION -->
-                    <ul class="navigation">
-                        {@menu}
-                            {#items}
-                            <li><a href="{url}" class="{?dock}active{/dock}">{title}</a></li>
-                            {/items}
-                        {/menu}
-                    </ul>
-                    <!-- SOCIAL -->
-                    <ul class="follow">
-                        <li><a href="#"> <i class="icon-twitter"></i> </a></li>
-                        <li><a href="#"> <i class="icon-facebook"></i> </a></li>
-                        <li><a href="/contact"> <i class="icon-envelope-alt"></i> </a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
 </div>
-<!-- SCRIPTS -->
-<script src="js/jquery.js"></script>
-<script src="js/jquery-ui.js"></script>
-<script src="js/jquery.mobile.js"></script>
-<script src="js/respond.js"></script>
-<script src="js/retina.js"></script>
-<script src="js/browser.js"></script>
-<script src="js/quicksand.js"></script>
-<script src="js/scale.js"></script>
-<script src="lib/revolution/js/plugins.js"></script>
-<script src="lib/revolution/js/revolution.js"></script>
-<script src="lib/bxslider/jquery.bxslider.min.js"></script>
-<script src="lib/fancybox/jquery.fancybox.pack.js"></script>
-<script src="js/main.js"></script>
+
+{+scripts/}
+
 </body>
 </html>

@@ -17,6 +17,32 @@ dust.helpers.picture = function (chunk, ctx, bodies, params) {
     if (ctx.picture)
         ctx = ctx.picture;
 
+    if (!ctx || !ctx.url)
+        return chunk;
+
+    var format = ctx.mimetype.split('/')[1] == 'png' ? 'png' : 'jpg';
+
+    var filepicker_url = ctx.url + '/convert?';
+    var sizeparams = [];
+    sizeparams.push('format=' + format);
+    if (params.width) sizeparams.push('w=' + params.width);
+    if (params.height) sizeparams.push('h=' + params.height);
+    if (params.fit) sizeparams.push('fit=' + params.fit);
+    if (params.align) sizeparams.push('align=' + params.align);
+    filepicker_url += sizeparams.join('&');
+    return chunk.write(filepicker_url);
+};
+
+dust.helpers.cloudinary = function(chunk, ctx, bodies, params) {
+    params || (params = {});
+
+    ctx = params.path
+        ? ctx.get(params.path)
+        : ctx.current();
+
+    if (ctx.picture)
+        ctx = ctx.picture;
+
     if (!ctx || !ctx.public_id)
         return chunk;
 
@@ -25,11 +51,6 @@ dust.helpers.picture = function (chunk, ctx, bodies, params) {
     return chunk.write(
         cloudinary.url(ctx.public_id, params)
     );
-};
-
-dust.helpers.cloudinary = function() {
-    console.error('dust helpers: @cloudinary is deprecated, use @picture instead');
-    return dust.helpers.picture.apply(this, arguments);
 };
 
 // based on a cms schema with a Navigation ref, show and order filed
