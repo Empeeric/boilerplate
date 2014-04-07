@@ -17,6 +17,7 @@
         <link rel="apple-touch-icon" sizes="144x144" href="{@cloudinary width="144" height="144" crop="fill"/}">
     {/config.icon}
 
+    <script type="text/javascript" src="//dl1d2m8ri9v3j.cloudfront.net/releases/1.2.4/tracker.js" data-customer="5c47217bc05d4160bcdf04a983d5921b"></script>
     <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
@@ -26,6 +27,7 @@
 <nav>
     {@menu}{>"partials/menu.dust"/}{/menu}
 </nav>
+
 <div id="content">
     {+page/}
 </div>
